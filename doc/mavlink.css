@@ -56,6 +56,13 @@ table.sortable td.mavlink_name {
     vertical-align: top;
 }
 
+table.sortable td.mavlink_name_ext {
+    color:#FFFFFF;
+    font-weight: bold;
+    width: 25%;
+    vertical-align: top;
+}
+
 table.sortable td.mavlink_mission_param {
     color:#334455;
     font-weight: bold;

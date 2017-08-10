@@ -42,16 +42,32 @@
    </tr>
    </thead>
    <tbody>
-   <xsl:apply-templates select="field" />
+   <xsl:apply-templates select="field | extensions" />
   </tbody>
   </table>
 </xsl:template>
 
-<xsl:template match="//field">
+<xsl:template match="//field | //extensions">
    <tr class="mavlink_field">
-   <td class="mavlink_name" valign="top"><xsl:value-of select="@name" /></td>
-   <td class="mavlink_type" valign="top"><xsl:value-of select="@type" /></td>
+   <xsl:choose>
+     <xsl:when test="not(@name)">
+       <td class="mavlink_name_ext" valign="top">EXTENSIONS</td>
+     </xsl:when>
+     <xsl:otherwise>
+       <td class="mavlink_name" valign="top"><xsl:value-of select="@name" /></td>
+     </xsl:otherwise>
+   </xsl:choose>
+   <xsl:choose>
+     <xsl:when test="not(@type)">
+       <td class="mavlink_type" valign="top">-</td>
+     </xsl:when>
+     <xsl:otherwise>
+       <td class="mavlink_type" valign="top"><xsl:value-of select="@type" /></td>
+     </xsl:otherwise>
+   </xsl:choose>
+
    <td class="mavlink_comment"><xsl:value-of select="." /></td>
+
    </tr>
 </xsl:template>
 
